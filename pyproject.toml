@@ -1,0 +1,46 @@
+[project]
+
+name = "tcloc"
+version = "0.1.0"
+
+description = "PyTorch implementation of 'Unsupervised Metric Relocalization Using Transform Consistency Loss'."
+
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+
+dependencies = [
+    "huggingface-hub>=0.25",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "opencv-python-headless>=4.9",
+    "pillow>=10",
+    "requests>=2.31",
+    "safetensors>=0.4",
+    "torch>=2.5",
+    "torchvision>=0.20",
+]
+
+[project.scripts]
+tcloc = "tcloc.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 80
+
+[tool.ruff]
+line-length = 80
+lint.select = ["E", "F", "W", "I"]
+
+[tool.mypy]
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["torchvision.*"]
+ignore_missing_imports = true
